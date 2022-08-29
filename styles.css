@@ -1,3 +1,55 @@
 html {
-    background-color: azure;
+    background-color: #ebebeb;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    font-size: 6rem;
+    
+}
+
+.results {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+.results > div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.results div span {
+    font-size: 2rem;
+    margin-left: 15px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+i {
+    transition: 0.1s ease-in-out;
+    cursor:grab;
+}
+
+i:hover {
+    transform: scale(1.2);
+}
+
+i, :visited, :active {
+    color: black;
 }
