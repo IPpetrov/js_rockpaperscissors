@@ -1,3 +1,5 @@
+
+/*
 let computerChoice = 0;
 let roundCounter = 0;
 let computerWins = 0;
@@ -58,6 +60,9 @@ function playRound(pcChoice, personChoice) {
             break;
         } 
 }
+
+playRound();
+
 function game() {
     while (true) {
         playRound();
@@ -73,3 +78,4 @@ function game() {
     }
 }
 game();
+*/
