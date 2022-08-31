@@ -1,81 +1,153 @@
+const choiceButtons = document.querySelectorAll('.choice')
+const buttons = document.querySelectorAll('button')
+const playerIcon = document.createElement('i')
+const computerIcon = document.createElement('i')
+const resetButton = document.getElementById('reset')
+const par = document.createElement('p')
+let playerChoice = ''
+let computerChoice = ''
+let playerScore = '0'
+let computerScore = '0'
+let result = ''
 
-/*
-let computerChoice = 0;
-let roundCounter = 0;
-let computerWins = 0;
-let playerWins = 0;
 
-function playRound(pcChoice, personChoice) {
 
-    function getComputerChoice () {
-        computerChoice = Math.floor(Math.random() * 3) + 1;
-        if (computerChoice == 1) {
-            computerChoice = "rock";
-        } else if (computerChoice == 2) {
-            computerChoice = "paper";
-        } else {
-            computerChoice = "scissors";
+choiceButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+        if (playerScore == 5 || computerScore == 5) {
+            choiceButtons.forEach(button, button.setAttribute("disabled", ""))
         }
-        console.log("Computer chose: " + computerChoice.toUpperCase() + "!");
-        return computerChoice;
-    }
-    getComputerChoice();
+        playerChoice = button.value
+        computerChoice = getComputerChoice()
+        playRound()
+      })
+})
 
-    let playerChoice = prompt("What weapon do you choose? Rock, Paper or Scissors?").toLowerCase();
-    console.log("Player chose: " + playerChoice.toUpperCase() + "!");
+function getComputerChoice () {
+    const choices = ['rock', 'paper', 'scissors']
+    computerChoice = choices[Math.floor(Math.random() * 3)];
+    return computerChoice;
+}
 
+function playRound() {
     switch(playerChoice) {
         case "rock":
+            playerIcon.removeAttribute('class')
+            computerIcon.removeAttribute('class')
+            playerIcon.classList.add('fa', 'fa-hand-rock-o')
             if (computerChoice === "rock") {
-                console.log("Game is a tie!");
+                computerIcon.classList.add('fa', 'fa-hand-rock-o')
+                result = "Round is a tie!"
+                printScore(result)
             } else if (computerChoice === "paper") {
-                console.log("You LOSE! Paper beats rock!");
-                computerWins++;
+                computerIcon.classList.add('fa', 'fa-hand-paper-o')
+                result = "You LOST the round! Paper beats rock!"
+                computerScore++;
+                if (computerScore == 5) {
+                    par.textContent = "Unfortunately, you lost.."
+                    par.classList.add("losing")
+                    document.querySelector('.game-end').prepend(par)
+                }
+                printScore(result)
             } else {
-                console.log("You WIN! Rock beat scissors!");
-                playerWins++;
+                result = "You WIN the round! Rock beat scissors!"
+                computerIcon.classList.add('fa', 'fa-hand-scissors-o')
+                playerScore++;
+                if (playerScore == 5) {
+                    par.textContent = "Congratulations, you WON!"
+                    par.classList.add("winning")
+                    document.querySelector('.game-end').prepend(par)
+                }
+                printScore(result)
             }
             break;
         case "paper":
+            playerIcon.removeAttribute('class')
+            computerIcon.removeAttribute('class')
+            playerIcon.classList.add('fa', 'fa-hand-paper-o')
             if (computerChoice === "paper") {
-                    console.log("Game is a tie!");
-                } else if (computerChoice === "scissors") {
-                    console.log("You LOSE! Scissors beats paper!");
-                    computerWins++;
-                } else {
-                    console.log("You WIN! Paper beats rock!");
-                    playerWins++;
+                computerIcon.classList.add('fa', 'fa-hand-paper-o')
+                result = "Round is a tie!"
+                printScore(result)
+            } else if (computerChoice === "scissors") {
+                computerIcon.classList.add('fa', 'fa-hand-scissors-o')
+                result = "You LOST the round! Scissors beats paper!"
+                computerScore++;
+                if (computerScore == 5) {
+                    par.textContent = "Unfortunately, you lost.."
+                    par.classList.add("losing")
+                    document.querySelector('.game-end').prepend(par)
                 }
+                printScore(result)
+            } else {
+                computerIcon.classList.add('fa', 'fa-hand-rock-o')
+                result = "You WIN the round! Paper beats rock!"
+                playerScore++;
+                if (playerScore == 5) {
+                    par.textContent = "Congratulations, you WON!"
+                    par.classList.add("winning")
+                    document.querySelector('.game-end').prepend(par)
+                }
+                printScore(result)
+            }
             break;
         case "scissors":
+            playerIcon.removeAttribute('class')
+            computerIcon.removeAttribute('class')
+            playerIcon.classList.add('fa', 'fa-hand-scissors-o')
             if (computerChoice === "scissors") {
-                    console.log("Game is a tie!");
-                } else if (computerChoice === "rock") {
-                    console.log("You LOSE! Rock beats scissors!");
-                    computerWins++;
-                } else {
-                    console.log("You WIN! Scissors beats paper!");
-                    playerWins++;
+                computerIcon.classList.add('fa', 'fa-hand-scissors-o')
+                result = "Round is a tie!"
+                printScore(result)
+            } else if (computerChoice === "rock") {
+                computerIcon.classList.add('fa', 'fa-hand-rock-o')
+                result = "You LOST the round! Rock beats scissors!"
+                computerScore++;
+                if (computerScore == 5) {
+                    par.textContent = "Unfortunately, you lost.."
+                    par.classList.add("losing")
+                    document.querySelector('.game-end').prepend(par)
                 }
+                printScore(result)
+            } else {
+                computerIcon.classList.add('fa', 'fa-hand-paper-o')
+                result = "You WIN the round! Scissors beats paper!"
+                playerScore++;
+                if (playerScore == 5) {
+                    par.textContent = "Congratulations, you WON!"
+                    par.classList.add("winning")
+                    document.querySelector('.game-end').prepend(par)
+                }
+                printScore(result)
+            }
             break;
-        } 
-}
-
-playRound();
-
-function game() {
-    while (true) {
-        playRound();
-        if (computerWins === 3) {
-            console.log("Computer WINS!")
-            console.log("Computer wins: " + computerWins + " | " + "Player wins: " + playerWins)
-            break;
-        } else if (playerWins === 3) {
-            console.log("Player WINS!")
-            console.log("Player wins: " + playerWins + " | " + "Computer wins: " + computerWins)
-            break;
-        }
     }
 }
-game();
-*/
+
+function printScore(outcome) {
+    playerIcon.classList.add('result-icons')
+    computerIcon.classList.add('result-icons')
+    document.querySelector('.player').textContent = playerScore
+    document.querySelector('.computer').textContent = computerScore
+    document.querySelector('.outcome').textContent = outcome
+    document.querySelector('.past-games').appendChild(playerIcon)
+    document.querySelector('.past-games').appendChild(computerIcon)
+}
+
+resetButton.addEventListener("click", () => {
+    playerScore = 0
+    computerScore = 0
+
+    document.querySelector('.player').textContent = playerScore
+    document.querySelector('.computer').textContent = computerScore
+    document.querySelector('.outcome').textContent = ""
+    par.textContent = ""
+    document.querySelector('.past-games').removeChild(playerIcon)
+    document.querySelector('.past-games').removeChild(computerIcon)
+
+
+    choiceButtons.forEach(button => {
+                button.removeAttribute("disabled")
+            })
+    
+})

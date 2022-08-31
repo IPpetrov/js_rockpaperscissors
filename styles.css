@@ -1,6 +1,11 @@
 html {
-    background-color: #ebebeb;
+    background: linear-gradient(
+        -100grad,
+        rgb(199, 199, 199) 50%,
+        rgb(175, 175, 175) 50%
+    )
 }
+
 
 body {
     display: flex;
@@ -10,11 +15,10 @@ body {
     margin-top: 50px;
 }
 
-button {
+.choice {
     background-color: transparent;
     border: none;
     font-size: 6rem;
-    
 }
 
 .results {
@@ -46,10 +50,42 @@ i {
     cursor:grab;
 }
 
-i:hover {
+.choice:hover {
     transform: scale(1.2);
+    box-shadow: 10px red;
 }
 
 i, :visited, :active {
     color: black;
+}
+
+.result-icons {
+    background-color: transparent;
+    font-size: 6rem;
+}
+
+.past-games {
+    display: flex;
+    height: 100px;
+    width: 400px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.outcome {
+    height: 20px;
+}
+
+.history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-end {
+    height: 50px;
+}
+
+#reset {
+    margin-top: 30px;
 }

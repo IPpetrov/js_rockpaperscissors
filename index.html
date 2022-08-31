@@ -5,25 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="javascript.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type='text/css' href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <div class="buttons">
-        <button id='rock'><i class="fa fa-hand-rock-o"></i></button>
-        <button id="paper"><i class="fa fa-hand-paper-o"></i></button>
-        <button id="scissors"><i class="fa fa-hand-scissors-o"></i></button>
+        <button class="rock choice" value="rock"><i class="fa fa-hand-rock-o"></i></button>
+        <button class="paper choice" value="paper"><i class="fa fa-hand-paper-o"></i></button>
+        <button class="scissors choice" value="scissors"><i class="fa fa-hand-scissors-o"></i></button>
     </div>
     <div class="results">
-        <div>
+        <div id="player">
             <h1>You:</h1>
-            <span>0</span>
+            <span class="player">0</span>
         </div>
         <div>
             <h1>Computer:</h1>
-            <span>0</span>
+            <span class="computer">0</span>
         </div>
     </div>
+    <div class="history">
+        <div class="game-end">
+            
+        </div>
+        <div class="past-games">
+        </div>
+        <span class="outcome"></span>
+    </div>
+    <div>
+        <button id="reset">Reset</button>
+    </div>
 </body>
+<script src="javascript.js" defer></script>
 </html>
